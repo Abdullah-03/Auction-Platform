@@ -1,4 +1,4 @@
-import userModel from "../models/userModel";
+import userModel from "../models/userModel.js";
 import bcrypt from "bcrypt";
 
 export const signUp = async (req, res) => {
@@ -40,7 +40,7 @@ export const login = async (req, res) => {
       if (!passwordMatch) {
         return res.status(401).json({ message: "Invalid password" });
       } else {
-        userObject = user.toObject();
+        const userObject = user.toObject();
         delete userObject.password; // we'll store userObject as cookie so we need to remove password
         return res.status(200).json({ user });
       }
